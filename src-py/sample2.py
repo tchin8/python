@@ -4,5 +4,6 @@ def factorial(num):
   else:
     return num * factorial(num-1)
 
+
 result = factorial(4)
 print(result)
