@@ -272,3 +272,253 @@ else:
 
 
 #-----------------------------While Statements------------------------------
+
+spam = 0
+while spam < 5:
+  print('Hello, world.')
+  spam = spam + 1
+
+
+# breaking out early 
+
+spam = 0
+while True:
+  print('Hello, world.')
+  spam = spam + 1
+  if spam >= 5:
+    break
+
+
+
+#continue 
+spam = 0
+while True:
+  print('Hello, world.')
+  spam = spam + 1
+  if spam < 5:
+    continue
+  break
+
+#-----------------------------Try, Except Statements----------------------------
+
+a = 321
+print(len(a))     #TypeError: object of type 'int' has no len()
+
+
+a = 321
+try:
+    print(len(a))
+except:
+    print('Silently handle error here')
+
+    # Optionally include a correction to the issue
+    a = str(a)
+    print(len(a))
+
+
+##########
+
+a = 100
+b = 0
+c = a / b
+print(c)      # ZeroDivisionError: division by zero
+
+
+a = 100
+b = 0
+try:
+    c = a / b
+except ZeroDivisionError:
+    c = None
+print(c)      # None
+
+
+
+a = 100
+b = 0
+try:
+    print(a / b)
+except ZeroDivisionError:
+    pass
+
+
+
+
+a = 100
+# b = "5"
+try:
+    print(a / b)
+except ZeroDivisionError:
+    pass
+except (TypeError, NameError):
+    print("ERROR!")
+
+
+
+# You can name the error so you can record it!
+
+a = 100
+# b = "5"
+try:
+    print(a / b)
+except ZeroDivisionError:
+    pass
+except (TypeError, NameError) as e:
+    print("ERROR!", e)          # ERROR! name 'b' is not defined
+
+
+
+
+# tuple of file names
+files = ('one.txt', 'two.txt', 'three.txt')
+
+# simple loop
+for filename in files:
+    try:
+        # open the file in read mode
+        f = open(filename, 'r')
+    except OSError:
+        # handle the case where file does not exist or permission is denied
+        print('cannot open file', filename)
+    else:
+        # do stuff with the file object (f)
+        print(filename, 'opened successfully')
+        print('found', len(f.readlines()), 'lines')
+        f.close()
+
+
+
+### without else 
+
+# tuple of file names
+files = ('one.txt', 'two.txt', 'three.txt')
+
+# simple loop
+for filename in files:
+    # CHANGE 1 or 2: Set f to none so we can check it later
+    f = None
+    try:
+        # open the file in read mode
+        f = open(filename, 'r')
+    except OSError:
+        # handle the case where file does not exist or permission is denied
+        print('cannot open file', filename)
+    
+    # CHANGE 2 of 2: Check the value of f (None is equivalent to false)
+    if f:
+        # do stuff with the file object (f)
+        print(filename, 'opened successfully')
+        print('found', len(f.readlines()), 'lines')
+        f.close()
+
+
+
+### finally
+def divide(x, y):
+    try:
+        result = x / y
+    except ZeroDivisionError:
+        print("Cannot divide by zero")
+    else:
+        print("Result is", result)
+    finally:
+        print("Finally...")
+
+
+# FINALLY RUNS BEFORE ANY RETURNS IN TRY OR EXCEPTION
+def greeting():
+    try:
+        return "Hey, friend."
+    finally:
+        return "Fun times!"
+
+print(greeting())
+
+
+
+### hasattr
+
+# Try a number - nothing will print out
+a = 321
+if hasattr(a, '__len__'):
+    print(len(a))
+
+# Try a string - the length will print out (4 in this case)
+b = "5555"
+if hasattr(b, '__len__'):
+    print(len(b))
+
+
+
+### pass ###
+# use pass if a clause is empty
+if True:
+  pass
+
+
+while True:
+  pass
+
+# THIS CODE WILL RESULT IN AN IndentationError
+print("Hello")
+
+if True:
+
+print("Good-bye")
+
+
+#----------------------------------Functions-----------------------------------
+
+def printCopyright():
+    print("Copyright 2020. Me, myself and I. All rights reserved.")
+
+
+def average(num1, num2):
+    return (num1/num2)
+
+print(average(6, 2))        # => 3.0
+
+
+def greeting(name, saying="Hello"):
+    print(saying, name)
+
+greeting("Monica")
+# Hello Monica
+
+greeting("Barry", "Hey")
+# Hey Barry
+
+
+
+
+# THIS IS BAD CODE AND WILL NOT RUN
+def increment(delta=1, value):
+    return delta + value
+
+
+
+def greeting(name, saying="Hello"):
+    print(saying, name)
+
+greeting("Monica")
+# Hello Monica
+
+greeting("Monica", saying="Hi")
+
+greeting(name="Barry", saying="Hey")
+# Hey Barry
+
+greeting(saying="Hey", name="Barry")
+# Hey Barry
+
+
+
+#-----------------------------While Statements------------------------------
+
+
+
+
+
+
+#-----------------------------While Statements------------------------------
+
