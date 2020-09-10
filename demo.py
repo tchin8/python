@@ -63,8 +63,8 @@ print(10.0**30)    # => 1e+30
 'a1b2c3'
 'Jodi asked, "What\'s up, Sam?"'
 
-# Invalid string
-"Tom shouted, "Go outside!""
+# # Invalid string
+# "Tom shouted, "Go outside!""
 
 
 print('''My instructions are very long so to make them
@@ -134,5 +134,141 @@ print("$1" + ",000"*3)     # => 1,000,000,000
 
 
 
+### formatting
+first_name = "Billy"
+last_name = "Bob"
+print('Your name is {0} {1}'.format(first_name, last_name))  # => Your name is Billy Bob
+
+print(f'Your name is {first_name} {last_name}')
 
 
+
+### String methods
+s = "--".join(["it", "is", "kind"])
+print(s)
+
+# Prints it--is--kind
+
+
+#------------------------------------Variables-----------------------------------
+### Assigning Variables
+a = 7
+b = 'Marbles'
+print(a)         # => 7
+print(b)         # => Marbles
+
+
+count = max = min = 0
+print(count)           # => 0
+print(max)             # => 0
+print(min)             # => 0
+
+
+### Manipulating Variables
+a = 17
+print(a)         # => 17
+a = 'seventeen'
+print(a)         # => seventeen
+
+'''The assignment shorthand operators from JavaScript also work in Python:
+
++=
+-=
+*=
+/=
+In fact, all the arithmetic operators have shorthand counterparts:
+
+**= (exponent)
+//= (integer division)
+%= (modulo)'''
+
+
+
+
+### None
+my_var = None
+print(my_var is None)     # => True
+
+
+
+
+#------------------------------------Boolean-----------------------------------
+# Logical AND
+print(True and True)    # => True
+print(True and False)   # => False
+print(False and False)  # => False
+
+# Logical OR
+print(True or True)     # => True
+print(True or False)    # => True
+print(False or False)   # => False
+
+# Logical NOT
+print(not True)             # => False
+print(not False and True)   # => True
+print(not True or False)    # => False
+
+
+
+#-----------------------------Comparison Operators------------------------------
+
+a = 4 
+b = 5
+print(not a == b)     # => True
+
+print(a == not b)    # => SyntaxError
+
+print (a == (not b))    # => False
+
+
+#-----------------------------Identity Vs. Equality------------------------------
+
+print (2 == '2')    # => False
+print (2 is '2')    # => False
+
+print ("2" == '2')    # => True
+print ("2" is '2')    # => True
+
+print (2 == 2.0)    # => True
+print (2 is 2.0)    # => False
+
+
+
+#-----------------------------If Statement------------------------------
+
+if (name == 'Monica'):
+  print('Hi, Monica.')
+
+
+if name == 'Monica':
+  print('Hi, Monica.')
+else:
+  print('Hello, stranger.')
+
+
+if name == 'Monica':
+  print('Hi, Monica.')
+elif age < 12:
+  print('You are not Monica, kiddo.')
+
+
+
+if name == 'Monica':
+  print('Hi, Monica.')
+elif age < 12:
+  print('You are not Monica, kiddo.')
+elif age > 2000:
+  print('Unlike you, Monica is not an undead, immortal vampire.')
+elif age > 100:
+  print('You are not Monica, grannie.')
+
+
+if name == 'Monica':
+  print('Hi, Monica.')
+elif age < 12:
+  print('You are not Monica, kiddo.')
+else:
+  print('You are neither Monica nor a little kid.')
+
+
+#-----------------------------While Statements------------------------------
