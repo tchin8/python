@@ -1213,42 +1213,125 @@ for i in range(0, 9, 2):
 
 #----------------------------------EXAMPLE--------------------------------------
 
+# Powers of 2 from 1 to 16
+# Write a for loop that uses the range function to
+# print the powers of 2 from 2 - 65536, that is
+# from 2^1st - 2^16th powers
 
-
-
-#----------------------------------EXAMPLE--------------------------------------
-
-
-
-
-#----------------------------------EXAMPLE--------------------------------------
-
-
+for i in range(1,17):
+  print(2**i)
 
 
 #----------------------------------EXAMPLE--------------------------------------
 
+# Write your function, here.
+def get_first_value(list):
+  return list[0]
 
 
-
-#----------------------------------EXAMPLE--------------------------------------
-
-
-
-
-#----------------------------------EXAMPLE--------------------------------------
-
-
+print(get_first_value([1, 2, 3]))        #> 1
+print(get_first_value([80, 5, 100]))     #> 80
+print(get_first_value([-500, 0, 50]))    #> -500
 
 
 #----------------------------------EXAMPLE--------------------------------------
 
+# Write your function, here.
+get_sum_of_elements = lambda l: sum(l)
 
+
+print(get_sum_of_elements([2, 7, 4]))     #> 13
+print(get_sum_of_elements([45, 3, 0]))    #> 48
+print(get_sum_of_elements([-2, 84, 23]))  #> 105
 
 
 #----------------------------------EXAMPLE--------------------------------------
 
+# Write your function, here.
+def get_indices(l, char):
+  idx = []
+  for i in range(0, len(l)):
+    if l[i] == char:
+      idx.append(i)
+  return idx
 
+
+
+print(get_indices(["a", "a", "b", "a", "b", "a"], "a"))
+# Prints [0, 1, 3, 5]
+
+print(get_indices([1, 5, 5, 2, 7], 7))
+# Prints [4]
+
+print(get_indices([1, 5, 5, 2, 7], 5))
+# Prints [1, 2]
+
+print(get_indices([1, 5, 5, 2, 7], 8))
+# Prints []
+
+
+#----------------------------------EXAMPLE--------------------------------------
+
+# Your code, here.
+can_nest = lambda l1, l2: min(l1) > min(l2) and max(l1) < max(l2)
+
+
+print(can_nest([1, 2, 3, 4], [0, 6]))  #> True
+print(can_nest([3, 1], [4, 0]))        #> True
+print(can_nest([9, 9, 8], [8, 9]))     #> False
+print(can_nest([1, 2, 3, 4], [2, 3]))  #> False
+
+
+#----------------------------------EXAMPLE--------------------------------------
+
+GUEST_LIST = {
+  "Kurt": "Germany",
+  "Julia": "France",
+  "Ito": "Japan",
+  "Katherine": "England",
+  "Sam": "Argentina"
+}
+
+# Write your function, here.
+def greeting(name):
+  if name not in GUEST_LIST:
+    return "Hi! I'm a guest."
+  else:
+    return f'Hi! I\'m {name} from {GUEST_LIST[name]}.'
+
+
+print(greeting("Kurt"))   #> "Hi! I'm Kurt from Germany."
+print(greeting("Sam"))    #> "Hi! I'm Sam from Argentina."
+print(greeting("Monty"))  #> "Hi! I'm a guest."
+
+
+#----------------------------------EXAMPLE--------------------------------------
+
+# Write your function, here.
+has_key = lambda dict, ele: ele in dict 
+
+
+print(has_key({ "a": 44, "b": 45, "c": 46 }, "d"))
+# False
+
+print(has_key({ "craves": True, "midnight": True, "snack": True }, "morning"))
+# False
+
+print(has_key({ "pot": 1, "tot": 2, "not": 3 }, "not"))
+# True
+
+
+#----------------------------------EXAMPLE--------------------------------------
+
+# Write your function, here.
+find_smallest_num = lambda l: min(l)
+
+
+print(find_smallest_num([34, 15, 88, 2]))                   #> 2
+print(find_smallest_num([34, -345, -1, 100]))               #> -345
+print(find_smallest_num([-76, 1.345, 1, 0]))                #> -76
+print(find_smallest_num([0.4356, 0.8795, 0.5435, -0.9999])) #> -0.9999
+print(find_smallest_num([7, 7, 7]))                         #> 7
 
 
 #----------------------------------EXAMPLE--------------------------------------
