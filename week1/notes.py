@@ -514,7 +514,7 @@ greeting(saying="Hey", name="Barry")
 
 
 #----------------------------------Classes-----------------------------------
-
+#----------------------------------Classes-----------------------------------
 
 class AngryBird:
   def __init__(self):
@@ -605,3 +605,136 @@ class AngryBird:
 
     def get_y(self):
         return self._y
+
+
+class AngryBird:
+    __slots__ = ['_x', '_y']
+
+    def __init__(self, x=0, y=0):
+        """
+        Construct a new AngryBird by setting its position to (0, 0).
+        """
+        self._x = x
+        self._y = y
+
+    def move_up_by(self, delta):
+        self._y += delta
+
+    def get_x(self):
+        return self._x
+
+    def get_y(self):
+        return self._y
+
+    def __repr__(self):
+        return f"<AngryBird ({self._x}, {self._y})>"
+
+
+
+
+#----------------------------------Inheritance----------------------------------
+
+
+class Employee:
+    def __init__(self, id):
+        self.id = id
+
+
+class Manager(Employee):
+    def __init__(self, id):
+        super().__init__(id)
+        self.employees = []
+
+    def add_direct_report(self, employee):
+        self.employees.append(employee)
+
+
+
+
+
+
+
+
+class Parent:
+    def boop(self):
+        print("I am Parent#boop")
+
+
+class Child(Parent):
+    def boop(self):
+        print("I am Child#boop")
+        super().boop()
+
+
+Child().boop()
+# Prints
+# "I am Child#boop"
+# "I am Parent#boop"
+
+
+
+
+#----------------------------------Properties----------------------------------
+class AngryBird:
+    def __init__(self, x=0, y=0):
+        """
+        Construct a new AngryBird by setting its position to (0, 0).
+        """
+        self._x = x
+        self._y = y
+
+    def move_up_by(self, delta):
+        self._y += delta
+
+    @property
+    def x(self):
+        return self._x
+
+    @property
+    def y(self):
+        return self._y
+
+
+bird = AngryBird()
+
+print(bird.x, bird.y)
+
+
+
+# setters 
+class AngryBird:
+    def __init__(self, x=0, y=0):
+        """
+        Construct a new AngryBird by setting its position to (0, 0).
+        """
+        self._x = x
+        self._y = y
+
+    def move_up_by(self, delta):
+        self._y += delta
+
+    @property
+    def x(self):
+        return self._x
+
+    @x.setter
+    def x(self, value):
+        if value < 0:
+            value = 0
+        self._x = value
+
+    @property
+    def y(self):
+        return self._y
+
+    @y.setter
+    def y(self, value):
+        if value < 0:
+            value = 0
+        self._y = value
+
+bird = AngryBird()
+bird.x = 12
+bird.y = -20 # Won't get set because of the setter method
+
+print(bird.x, bird.y)  #> 12 0
