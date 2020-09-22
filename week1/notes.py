@@ -512,3 +512,96 @@ greeting(saying="Hey", name="Barry")
 # Hey Barry
 
 
+
+#----------------------------------Classes-----------------------------------
+
+
+class AngryBird:
+  def __init__(self):
+    """
+    Construct a new AngryBird by setting its position to (0, 0).
+    """
+    self.x = 0
+    self.y = 0
+
+  def move_up_by(self, delta):
+    self.y += delta
+
+
+bird = AngryBird()
+print(bird.x, bird.y)  #> 0 0
+
+bird.move_up_by(8)
+print(bird.x, bird.y)  #> 0 8
+
+chuck = AngryBird()
+matilda = AngryBird()
+
+chuck.move_up_by(13)
+matilda.move_up_by(-4)
+
+print(chuck.x, chuck.y)      #> 0 13
+print(matilda.x, matilda.y)  #> 0 -4
+
+
+
+
+# or
+
+class AngryBird:
+  def __init__(self, x=0, y=0):
+    """
+    Construct a new AngryBird by setting its position to (0, 0).
+    """
+    self.x = x
+    self.y = y
+
+  def move_up_by(self, delta):
+    self.y += delta
+
+b1 = AngryBird()
+b2 = AngryBird(x=1)
+b3 = AngryBird(y=18)
+b4 = AngryBird(10, 10)
+
+
+
+
+class AngryBird:
+    def __init__(self, x=0, y=0):
+        """
+        Construct a new AngryBird by setting its position to (0, 0).
+        """
+        self._x = x
+        self._y = y
+
+    def move_up_by(self, delta):
+        self._y += delta
+
+    def get_x(self):
+        return self._x
+
+    def get_y(self):
+        return self._y
+
+
+
+
+class AngryBird:
+    __slots__ = ['_x', '_y']
+
+    def __init__(self, x=0, y=0):
+        """
+        Construct a new AngryBird by setting its position to (0, 0).
+        """
+        self._x = x
+        self._y = y
+
+    def move_up_by(self, delta):
+        self._y += delta
+
+    def get_x(self):
+        return self._x
+
+    def get_y(self):
+        return self._y
