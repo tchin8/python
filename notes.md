@@ -1,2 +1,0 @@
-# python REPL
-python3
