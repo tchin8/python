@@ -738,3 +738,110 @@ bird.x = 12
 bird.y = -20 # Won't get set because of the setter method
 
 print(bird.x, bird.y)  #> 12 0
+
+
+
+#------------------------------List Comprehensions------------------------------
+
+squares = []
+for i in range(10):
+    squares.append(i**2)
+
+print(squares)
+# Prints [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+
+
+# Using map()
+
+squares = map(lambda x: x**2, range(10))
+
+print(list(squares))
+# Prints [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+
+
+# Using list comprehensions
+
+squares = [i**2 for i in range(10)]
+
+print(list(squares))
+# Prints [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+
+# Using conditional logic
+
+sentence = 'the rocket came back from mars'
+vowels = [c for c in sentence if c in 'aeiou']
+
+print(vowels)
+# Prints ['e', 'o', 'e', 'a', 'e', 'a', 'o', 'a']
+
+
+
+
+# ex 2
+
+sentence = 'Mary, Mary, quite contrary, how does your garden grow?'
+def is_consonant(letter):
+    vowels = "aeiou"
+    return letter.isalpha() and letter.lower() not in vowels
+
+consonants = [i for i in sentence if is_consonant(i)]
+
+print(consonants)
+# Prints ['M', 'r', 'y', 'M', 'r', 'y', 'q', 't', 'c',
+# 'n', 't', 'r', 'r', 'y', 'h', 'w', 'd', 's', 'y',
+# 'r', 'g', 'r', 'd', 'n', 'g', 'r', 'w']
+
+
+
+
+# ex 3
+
+original_prices = [1.25, -9.45, 10.22, 3.78, -5.92, 1.16]
+prices = [i if i > 0 else 0 for i in original_prices]
+
+print(prices)
+# Prints [1.25, 0, 10.22, 3.78, 0, 1.16]
+
+
+
+#   ex 4
+
+def get_price(price):
+    return price if price > 0 else 0
+prices = [get_price(i) for i in original_prices]
+
+print(prices)
+# Prints [1.25, 0, 10.22, 3.78, 0, 1.16]
+
+
+
+# matrices
+
+matrix = [[i for i in range(5)] for _ in range(6)]
+
+print(matrix)
+# Prints
+# [
+#     [0, 1, 2, 3, 4],
+#     [0, 1, 2, 3, 4],
+#     [0, 1, 2, 3, 4],
+#     [0, 1, 2, 3, 4],
+#     [0, 1, 2, 3, 4],
+#     [0, 1, 2, 3, 4]
+# ]
+
+
+# flatten a matrix
+
+matrix = [
+    [0, 0, 0],
+    [1, 1, 1],
+    [2, 2, 2],
+]
+flat = [num for row in matrix for num in row]
+
+print(flat)
+# Prints [0, 0, 0, 1, 1, 1, 2, 2, 2]
