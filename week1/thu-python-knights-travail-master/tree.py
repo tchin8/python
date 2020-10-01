@@ -15,6 +15,25 @@ class Node:
       self._children.remove(node)
       node.parent = None
 
+  def depth_search(self, value):
+    stack = [self]
+    while len(stack):
+      node = stack[-1]
+      stack.remove(node)
+      if node.value == value:
+        return node
+      stack = stack + node._children
+    return None
+  
+  def breadth_search(self, value):
+    queue = [self]
+    while len(queue):
+      node = queue.pop(0)
+      if node.value == value:
+        return node
+      queue = queue + node._children
+    return None
+
   @property
   def value(self):
     return self._value
