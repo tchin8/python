@@ -33,3 +33,7 @@ def my_fx_to_decorate():
 fx_to_decorate = my_decorator(fx_to_decorate)
 ```
 
+# Flask 
+- flask is a plugin, extension, library, add-on whatever for Python  
+- allows you to specify a path to your browser and return content for it  
+
