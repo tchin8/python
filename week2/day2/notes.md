@@ -46,7 +46,52 @@ say_hi = message_decorator(say_hi)
 print(say_hi)             # <function message_decorator.<locals>.message_wrapper at 0x10f1a93a0>
 ```
 
+## Arguments
+```python
+def message_decorator(message_func):
+  def message_wrapper(name, author):
+    return f'{message_func(name)}! This is a message from {author}.'
+  return message_wrapper
 
+@message_decorator
+def say_hi(name):
+  return f'Hi, {name}'
+
+print(say_hi('Julia', 'Ryan'))  # Hi, Julia! This is a message from Ryan.
+```  
+
+Desctructured positional args using `*args`
+```python
+def message_decorator(message_func):
+  def message_wrapper(*args):
+    name, author = args
+    message = message_func(name)
+    return f'{message}! This is a message from {author}.'
+  return message_wrapper
+
+@message_decorator
+def say_hi(name):
+  return f'Hi, {name}'
+
+print(say_hi('Julia', 'Ryan'))  # Hi, Julia! This is a message from Ryan.
+```  
+
+****kwargs**
+- keyword args
+```python
+def message_decorator(message_func):
+  def message_wrapper(*args, **kwargs):
+    message = message_func(kwargs['name'])
+    author = kwargs['author']
+    return f'{message}! This is a message from {author}.'
+  return message_wrapper
+
+@message_decorator
+def say_hi(name):
+  return f'Hi, {name}'
+
+print(say_hi(name='Julia', author='Ryan'))  # Hi, Julia! This is a message from Ryan.
+```
 
 ## Callbacks  
 - py fxs can be passed as rgs just like callbacks from JS
@@ -136,6 +181,77 @@ def my_fx_to_decorate():
 
 fx_to_decorate = my_decorator(fx_to_decorate)
 ```
+
+## Built-in Class Decorators
+- python has a few built-in class decorators:
+  - `@property`
+    - this decorator referenes python's built-in `property()` fx to get a class attribute
+    - it can be used to define the getter of a class property
+    - the property getter also has associated *setter* and *deleter* methods
+  - `@classmethod`
+  - `@staicmethod`
+
+```python
+class Ring:
+  def __init__(self):
+    self._nickname = "Shiny ring"
+
+  @property
+  def nickname(self):
+    return self._nickname
+
+  @nickname.setter
+  def nickname(self, value):
+    self._nickname = value
+
+  @nickname.deleter
+  def nickname(self):
+    del self._nickname
+    print('Oh no! The ring is gone!')
+
+ring = Ring()
+print(ring.nickname)                  # Shiny ring
+ring.nickname = "Gollum's precious"
+print(ring.nickname)                  # Gollum's precious
+del ring.nickname                     # Oh no! The ring is gone!
+```
+
+## Custom Class Decorators
+- like how you wrote a decorator for a fx outside of a class, you can use decorators to wrap method definitions
+- can also write reusable decorators to wrap class definitions and modify the behavior of an entire class
+  - can used a class decorate to implement the singleton software design pattern
+
+```python
+from functools import wraps
+
+def singleton_decorator(class_definition):
+  @wraps(class_definition)
+  def class_wrapper():
+    if not class_wrapper.instance:
+      class_wrapper.instance = class_definition()
+    return class_wrapper.instance
+  class_wrapper.instance = None
+  return class_wrapper
+ 
+@singleton_decorator
+class OneRingToRuleThemAll:
+  """
+  This is a class for The Ring from Lord of the Rings.
+  """
+  def __init__(self):
+    self._nickname = "Gollum's precious"
+ 
+first_ring = OneRingToRuleThemAll()
+second_ring = OneRingToRuleThemAll()
+third_ring = OneRingToRuleThemAll()
+print(first_ring)   # <__main__.OneRingToRuleThemAll object at 0x1023981f0>
+print(second_ring)  # <__main__.OneRingToRuleThemAll object at 0x1023981f0>
+print(third_ring)   # <__main__.OneRingToRuleThemAll object at 0x1023981f0>
+print(OneRingToRuleThemAll.__name__)  # OneRingToRuleThemAll
+print(OneRingToRuleThemAll.__doc__)   # This is a class for The Ring from Lord of the Rings.
+```
+
+
 
 # Flask 
 - flask is a plugin, extension, library, add-on whatever for Python  
