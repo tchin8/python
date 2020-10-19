@@ -37,3 +37,13 @@ fx_to_decorate = my_decorator(fx_to_decorate)
 - flask is a plugin, extension, library, add-on whatever for Python  
 - allows you to specify a path to your browser and return content for it  
 
+
+
+# Calendar This 
+**Environment Settings**
+- `.flaskenv` 
+  - you should put the settings in `.flaskenv` that won't change between development and production environments
+  - this includes settings like `FLASK_APP` (the entry point for your app)
+- `.env`
+  - you should put development settings in `.env` because this one won't get checked into source control
+  - this should include `FLASK_ENV` and `SECRET_KEY`
