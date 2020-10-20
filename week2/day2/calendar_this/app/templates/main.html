@@ -6,6 +6,33 @@
   <title>Calendar This</title>
 </head>
 <body>
-  <h1>Calendar Working</h1>
+  <!-- <h1>Calendar Working</h1> -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Start</th>
+        <th>End</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- (1, 'My appointment', datetime.datetime(year, month, day, 14, 0, 0)), datetime.datetime(year, month, day, 15, 0, 0)) -->
+      <!-- d.strftime("%H:%M") -->
+      <!-- loop here to create rows -->
+      <!-- use strftime to format date objects -->
+      <!-- loop here to create rows -->
+      {% for item in rows %}
+      <tr>
+        {% for i in range(len(item)) %}
+          {% if i != 0 %}
+            <td>
+              {{ item[i] }}
+            </td>
+            {% endif %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </body>
 </html>
