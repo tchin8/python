@@ -7,6 +7,21 @@
 </head>
 <body>
   <!-- <h1>Calendar Working</h1> -->
+  <form method="post" action="/">
+    <!-- use your form variable here -->
+    <!-- to make your form           -->
+    <!-- this is for CSRF attacks, something about making it safe -->
+    {{ form.hidden_tag() }}
+    <p>Name {{ form.name() }}</p>
+    <p>Start date {{ form.start_date() }}</p>
+    <!-- {{ form.start_date.label }} {{ form.start_date }} -->
+    <p>Start time {{ form.start_time() }}</p>
+    <p>End date {{ form.end_date() }}</p>
+    <p>End time {{ form.end_time() }}</p>
+    <p>Description {{ form.description() }}</p>
+    <p>Private? {{ form.private() }}</p>
+    <p>{{ form.submit() }}</p>
+  </form>
   <table>
     <thead>
       <tr>
@@ -24,12 +39,11 @@
       {% for item in rows %}
       <tr>
         {% for ele in item %}
-
         <td>
           {% if ele is not string %}
-          {{ ele.strftime("%H:%M") }}
+            {{ ele.strftime("%H:%M") }}
           {% else %}
-          {{ ele }}
+            {{ ele }}
           {% endif %}
         </td>
         {% endfor %}
