@@ -17,6 +17,13 @@
     <!-- {{ form.start_date.label }} {{ form.start_date }} -->
     <p>Start time {{ form.start_time() }}</p>
     <p>End date {{ form.end_date() }}</p>
+    {% if form.end_date.errors %}
+    <ul class="errors">
+      {% for error in form.end_date.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     <p>End time {{ form.end_time() }}</p>
     <p>Description {{ form.description() }}</p>
     <p>Private? {{ form.private() }}</p>
