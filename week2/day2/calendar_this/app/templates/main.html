@@ -23,14 +23,17 @@
       <!-- loop here to create rows -->
       {% for item in rows %}
       <tr>
-        {% for i in range(len(item)) %}
-          {% if i != 0 %}
-            <td>
-              {{ item[i] }}
-            </td>
-            {% endif %}
-          {% endfor %}
-        </tr>
+        {% for ele in item %}
+
+        <td>
+          {% if ele is not string %}
+          {{ ele.strftime("%H:%M") }}
+          {% else %}
+          {{ ele }}
+          {% endif %}
+        </td>
+        {% endfor %}
+      </tr>
       {% endfor %}
     </tbody>
   </table>

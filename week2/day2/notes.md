@@ -318,3 +318,4 @@ https://www.codegrepper.com/code-examples/sql/postgresql+Insufficient+privilege%
 
 - All Tables of schema  
   - `GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO <user>;`  
+
