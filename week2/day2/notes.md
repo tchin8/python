@@ -267,3 +267,54 @@ print(OneRingToRuleThemAll.__doc__)   # This is a class for The Ring from Lord o
 - `.env`
   - you should put development settings in `.env` because this one won't get checked into source control
   - this should include `FLASK_ENV` and `SECRET_KEY`
+
+## Psycopg w/ Postgres
+1. open sql shell 
+  - `psql -U`
+    - `\l` to list all db's
+2. create user, pw
+  - obviously, don't use 'password'
+    ```sql
+    CREATE USER calendar_this WITH CREATEDB PASSWORD 'password';
+    ```
+3. create db
+    ```sql
+    CREATE DATABASE calendar_this_dev WITH OWNER calendar_this;
+    ```
+4. create table
+    ```sql
+    CREATE TABLE appointments (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      start_datetime TIMESTAMP NOT NULL,
+      end_datetime TIMESTAMP NOT NULL,
+      description TEXT NOT NULL,
+      private BOOLEAN NOT NULL
+    );
+    ```
+5. checkkk it outtt, put one record in there
+    ```sql
+    INSERT INTO appointments (name, start_datetime, end_datetime, description, private)
+    VALUES
+    ('My appointment', '2020-10-19 14:00:00', '2020-10-19 15:00:00',
+    'An appointment for me', false);
+    ```
+6. put connect URL into the `.env` file
+    ```python
+    DB_USER=calendar_this
+    DB_PASS=password
+    DB_NAME=calendar_this_dev
+    DB_HOST=localhost
+    ```
+
+## *Errors*  
+`InsufficientPrivilege: permission denied for table appointments`  
+Fixed it with this link:  
+https://www.codegrepper.com/code-examples/sql/postgresql+Insufficient+privilege%3A+7+ERROR%3A+permission+denied+for+table  
+
+- One Table 
+  - I ran this one specifically. this took me forever to fix. was so annoying. WHY EVEN HAVE THIS HAPPEN?  
+  - `GRANT ALL PRIVILEGES ON TABLE appointments TO <user>;` 
+
+- All Tables of schema  
+  - `GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO <user>;`  
